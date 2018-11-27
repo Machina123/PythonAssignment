@@ -199,3 +199,7 @@ modules.xml
 *.ipr
 
 # End of https://www.gitignore.io/api/pycharm+all
+
+# Project-related files safe to ignore
+spotify_auth.dat
+spoti_access_token.json
