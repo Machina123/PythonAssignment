@@ -36,7 +36,7 @@ def mac():
                     }
             kuponyMac.append(kuponyMacEl)
 
-        with open('data.json', 'w') as outfile:
+        with open('kuponyMcDonald.json', 'w') as outfile:
             for i in kuponyMac:
                 # print(i)
                 json.dump(i, outfile)
