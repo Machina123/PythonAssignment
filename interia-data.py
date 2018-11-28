@@ -1,7 +1,7 @@
 import bs4 as bs
 import urllib.request
 
-url = 'https://www.tvn24.pl/najnowsze.xml'
+url = 'https://fakty.interia.pl/feed'
 sauce = urllib.request.urlopen(url).read()
 soup = bs.BeautifulSoup(sauce, 'xml')
 tab = []
