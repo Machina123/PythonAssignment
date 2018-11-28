@@ -1,11 +1,13 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
+
 def mac():
     with urllib.request.urlopen('https://mcdonalds.pl/oferty/?utm_source=mcdonalds.pl&utm_medium=slider&utm_campaign=kupony') as response:
         webpage = response.read()
         soup = BeautifulSoup(webpage, 'html.parser')
-        kuponyMac = {}
+        kuponyMac = []
+        kuponyMacEl = {}
         nazwaKuponu = []
         cenaKuponu = []
         fotoKuponu = []
@@ -22,17 +24,27 @@ def mac():
                         cenaKuponu.append(nowaCena)
                 for img in anchor.find_all('img'):
                     fotoKuponu.append(img)
+        for i in nazwaKuponu:
+            for j in cenaKuponu:
+                for k in fotoKuponu:
+                    kuponyMacEl = {
+                        "name": i,
+                        "value": j,
+                        "picture": k
+                    }
+            kuponyMac.append(kuponyMacEl)
 
-        for i in fotoKuponu:
+        for i in kuponyMac:
             print(i)
-    cenaKuponu.reverse()
-    x = len(cenaKuponu)
-    for i in nazwaKuponu:
-        for j in cenaKuponu:
-            kuponyMac[i] = j
-        cenaKuponu.remove(j)
-    for i in nazwaKuponu:
-         print(i, kuponyMac[i])
+
+    # cenaKuponu.reverse()
+    # x = len(cenaKuponu)
+    # for i in nazwaKuponu:
+        # for j in cenaKuponu:
+            # kuponyMac[i] = j
+        # cenaKuponu.remove(j)
+    # for i in nazwaKuponu:
+         # print(i, kuponyMac[i])
 
 
 def kfc():
@@ -51,8 +63,8 @@ def kfc():
                         # nazwaKuponu.append(z.get_text())
     #for i in nazwaKuponu:
      #   print(i)
-#print("\t\tMAC\n")
-#mac()
+print("\t\tMAC\n")
+mac()
 
 print("\n\t\tKFC\n")
-kfc()
+# kfc()
