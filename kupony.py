@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
+import json
 
 
 def mac():
@@ -23,7 +24,8 @@ def mac():
                         nowaCena = cenaKuponuTMP+"."+v.get_text()
                         cenaKuponu.append(nowaCena)
                 for img in anchor.find_all('img'):
-                    fotoKuponu.append(img)
+                    # fotoKuponu.append(img)
+                    fotoKuponu.append(img.get('src'))# pobranie zawartości alt'a
         for i in nazwaKuponu:
             for j in cenaKuponu:
                 for k in fotoKuponu:
@@ -36,6 +38,7 @@ def mac():
 
         for i in kuponyMac:
             print(i)
+
 
     # cenaKuponu.reverse()
     # x = len(cenaKuponu)
