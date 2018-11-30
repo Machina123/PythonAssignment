@@ -30,7 +30,7 @@ def dagrasso():
 
     with open('kuponyDagrasso.json', 'w') as outfile:
         for i in kuponyDagrasso:
-            print(i)
+            # print(i)
             json.dump(i, outfile)
 
 dagrasso()
