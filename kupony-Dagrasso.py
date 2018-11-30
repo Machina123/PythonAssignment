@@ -24,7 +24,7 @@ def dagrasso():
         for j in fotoKuponu:
             kuponyDagrassoEl = {
                 'name': i,
-                'image': j
+                'picture': j
             }
         kuponyDagrasso.append(kuponyDagrassoEl)
 
