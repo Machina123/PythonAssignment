@@ -26,20 +26,21 @@ def mac():
                 for img in anchor.find_all('img'):
                     # fotoKuponu.append(img)
                     fotoKuponu.append(img.get('src'))# pobranie zawartości alt'a
-        for i in nazwaKuponu:
-            for j in cenaKuponu:
-                for k in fotoKuponu:
-                    kuponyMacEl = {
-                        "name": i,
-                        "value": j,
-                        "picture": k
-                    }
-            kuponyMac.append(kuponyMacEl)
 
-        with open('kuponyMcDonald.json', 'w') as outfile:
-            for i in kuponyMac:
-                # print(i)
-                json.dump(i, outfile)
+    for i in nazwaKuponu:
+        for j in cenaKuponu:
+            for k in fotoKuponu:
+                kuponyMacEl = {
+                    "name": i,
+                    "value": j,
+                    "picture": k
+                }
+        kuponyMac.append(kuponyMacEl)
+
+    with open('kuponyMcDonald.json', 'w') as outfile:
+        for i in kuponyMac:
+            # print(i)
+            json.dump(i, outfile)
 
 
     # cenaKuponu.reverse()
@@ -70,45 +71,58 @@ def subway():
                         fotoKuponu.append(b.get('data-original'))
 
 
-        for i in nazwaCenaSubway:
-            for j in fotoKuponu:
-                kuponySubwayEl = {
-                    "name": i,
-                    "picture": j
-                }
-            kuponySubway.append(kuponySubwayEl)
+    for i in nazwaCenaSubway:
+        for j in fotoKuponu:
+            kuponySubwayEl = {
+                "name": i,
+                "picture": j
+            }
+        kuponySubway.append(kuponySubwayEl)
 
-        with open('kuponySubway.json', 'w') as outfile:
-            for i in kuponySubway:
-                # print(i)
-                json.dump(i, outfile)
+    with open('kuponySubway.json', 'w') as outfile:
+        for i in kuponySubway:
+            # print(i)
+            json.dump(i, outfile)
 
-def pizza():
+def dagrasso():
     with urllib.request.urlopen('https://www.dagrasso.pl/promocje') as response:
         webpage = response.read()
         soup = BeautifulSoup(webpage, 'html.parser')
         fotoKuponu = []
         nazwaKuponu = []
-        for u in soup.find_all('div', {'class': 'content-promo'}):
+        kuponyDagrassoEl = {}
+        kuponyDagrasso = []
+        for u in soup.find_all('div', {'class': 'content'}):
             for w in u.find_all('div', {'class': 'container'}):
                 for x in w.find_all('div', {'class': 'row'}):
-                    for y in x.find_all('div'):
-                        for z in y.find_all('img'):
-                            fotoKuponu.append(z.get('src'))
-                        for nazwa in y.find_all('h1'):
-                            nazwaKuponu.append(nazwa.get_text())
+                    for y in x.find_all('div', {'class': 'col-sm-5 col-sm-push-7'}):
+                        for img in y.find_all('img'):
+                            fotoKuponu.append(img.get('src'))
+                    for z in x.find_all('div', {'class': 'col-sm-7 col-sm-pull-5'}):
+                            for nazwa in z.find_all('h1'):
+                                nazwaKuponu.append(nazwa.get_text())
 
-        for i in nazwaKuponu:
-            print(i)
+    for i in nazwaKuponu:
+        for j in fotoKuponu:
+            kuponyDagrassoEl = {
+                'name': i,
+                'image': j
+            }
+        kuponyDagrasso.append(kuponyDagrassoEl)
+
+    with open('kuponyDagrasso.json', 'w') as outfile:
+        for i in kuponyDagrasso:
+            # print(i)
+            json.dump(i, outfile)
 
 
-# print("\t\tMAC\n")
+print("\t\tMAC\n")
 # mac()
 
-# print("\n\t\tSUBWAY\n")
+print("\n\t\tSUBWAY\n")
 # subway()
 
-print("\n\t\tDominium\n")
-pizza()
+print("\n\t\tDagrasso\n")
+dagrasso()
 
 
