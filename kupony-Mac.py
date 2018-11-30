@@ -42,7 +42,6 @@ def mac():
             # print(i)
             json.dump(i, outfile)
 
-
     # cenaKuponu.reverse()
     # x = len(cenaKuponu)
     # for i in nazwaKuponu:
