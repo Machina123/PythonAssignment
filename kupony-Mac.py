@@ -39,7 +39,7 @@ def mac():
 
     with open('kuponyMcDonald.json', 'w') as outfile:
         for i in kuponyMac:
-            print(i)
+            # print(i)
             json.dump(i, outfile)
 
 

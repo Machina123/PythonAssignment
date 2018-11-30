@@ -117,10 +117,10 @@ def dagrasso():
 
 
 print("\t\tMAC\n")
-# mac()
+mac()
 
 print("\n\t\tSUBWAY\n")
-# subway()
+subway()
 
 print("\n\t\tDagrasso\n")
 dagrasso()
