@@ -29,7 +29,7 @@ def subway():
 
     with open('kuponySubway.json', 'w') as outfile:
         for i in kuponySubway:
-            print(i)
+            # print(i)
             json.dump(i, outfile)
 
 subway()
