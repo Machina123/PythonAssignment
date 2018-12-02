@@ -16,11 +16,8 @@ def get_soup(url):
     soup = bs.BeautifulSoup(sauce, 'xml')
     return soup
 
-soupTvn = get_soup(urlTvn)
-soupRmf = get_soup(urlRmf)
-soupInteria = get_soup(urlInteria)
-
-def tvn(soup):
+def tvn():
+    soup = get_soup(urlTvn)
     for url in soup.find_all('item'):
         xd = {
             "title": url.title.text,
@@ -32,7 +29,8 @@ def tvn(soup):
         tabTvn.append(xd)
     return HttpResponse(json.dumps(tabTvn))
 
-def rmf(soup):
+def rmf():
+    soup = get_soup(urlRmf)
     for url in soup.find_all('item'):
         xd = {
             "title": url.title.text,
@@ -44,7 +42,8 @@ def rmf(soup):
         tabRmf.append(xd)
     return HttpResponse(json.dumps(tabRmf))
 
-def interia(soup):
+def interia():
+    soup = get_soup(urlInteria)
     for url in soup.find_all('item'):
         xd = {
             "title": url.title.text,
@@ -55,8 +54,3 @@ def interia(soup):
 
         tabInteria.append(xd)
     return HttpResponse(json.dumps(tabInteria))
-
-
-tvn(soupTvn)
-rmf(soupRmf)
-interia(soupInteria)
