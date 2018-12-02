@@ -31,5 +31,5 @@ def subway():
         for i in kuponySubway:
             # print(i)
             json.dump(i, outfile)
-            
+           
 subway()
