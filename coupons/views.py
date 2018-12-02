@@ -4,11 +4,6 @@ import urllib.request
 import json
 
 
-from bs4 import BeautifulSoup
-import urllib.request
-import json
-
-
 def mac(request):
     with urllib.request.urlopen('https://mcdonalds.pl/oferty') as response:
         webpage = response.read()
