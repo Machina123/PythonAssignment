@@ -26,6 +26,7 @@ def tvn(soup):
         }
 
         tabTvn.append(xd)
+    return HttpResponse(json.dumps(tabTvn))
 
 def rmf(soup):
     for url in soup.find_all('item'):
@@ -37,6 +38,7 @@ def rmf(soup):
         }
 
         tabRmf.append(xd)
+    return HttpResponse(json.dumps(tabRmf))
 
 def interia(soup):
     for url in soup.find_all('item'):
@@ -48,6 +50,7 @@ def interia(soup):
         }
 
         tabInteria.append(xd)
+    return HttpResponse(json.dumps(tabInteria))
 
 soupTvn = get_soup(urlTvn)
 soupRmf = get_soup(urlRmf)
@@ -56,13 +59,3 @@ soupInteria = get_soup(urlInteria)
 tvn(soupTvn)
 rmf(soupRmf)
 interia(soupInteria)
-
-def getTvn():
-    return HttpResponse(json.dumps(tabTvn))
-
-def getRmf():
-    return HttpResponse(json.dumps(tabRmf))
-
-def getinteria():
-    return HttpResponse(json.dumps(tabIntgeria))
-
