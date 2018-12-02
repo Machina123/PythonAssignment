@@ -1,6 +1,7 @@
 import bs4 as bs
 import urllib.request
 import json
+from django.http import HttpResponse, HttpResponseRedirect
 
 urlTvn = 'https://www.tvn24.pl/najnowsze.xml'
 urlRmf = 'https://www.rmf24.pl/fakty/feed'
@@ -55,4 +56,13 @@ soupInteria = get_soup(urlInteria)
 tvn(soupTvn)
 rmf(soupRmf)
 interia(soupInteria)
+
+def getTvn():
+    return HttpResponse(json.dumps(tabTvn))
+
+def getRmf():
+    return HttpResponse(json.dumps(tabRmf))
+
+def getinteria():
+    return HttpResponse(json.dumps(tabIntgeria))
 
