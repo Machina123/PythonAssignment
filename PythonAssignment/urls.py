@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index),
     path('spotify/', include('spotify.urls')),
     path('admin/', admin.site.urls),
+    path('mpk/', include('mpk.urls'))
 ]
