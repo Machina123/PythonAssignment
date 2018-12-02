@@ -17,7 +17,7 @@ def get_soup(url):
     soup = bs.BeautifulSoup(sauce, 'xml')
     return soup
 
-def tvn():
+def tvn(request):
     soup = get_soup(urlTvn)
     for url in soup.find_all('item'):
         xd = {
@@ -30,7 +30,7 @@ def tvn():
         tabTvn.append(xd)
     return HttpResponse(json.dumps(tabTvn))
 
-def rmf():
+def rmf(request):
     soup = get_soup(urlRmf)
     for url in soup.find_all('item'):
         xd = {
@@ -43,7 +43,7 @@ def rmf():
         tabRmf.append(xd)
     return HttpResponse(json.dumps(tabRmf))
 
-def interia():
+def interia(request):
     soup = get_soup(urlInteria)
     for url in soup.find_all('item'):
         xd = {
