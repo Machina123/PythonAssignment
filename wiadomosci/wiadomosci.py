@@ -16,6 +16,10 @@ def get_soup(url):
     soup = bs.BeautifulSoup(sauce, 'xml')
     return soup
 
+soupTvn = get_soup(urlTvn)
+soupRmf = get_soup(urlRmf)
+soupInteria = get_soup(urlInteria)
+
 def tvn(soup):
     for url in soup.find_all('item'):
         xd = {
@@ -52,9 +56,6 @@ def interia(soup):
         tabInteria.append(xd)
     return HttpResponse(json.dumps(tabInteria))
 
-soupTvn = get_soup(urlTvn)
-soupRmf = get_soup(urlRmf)
-soupInteria = get_soup(urlInteria)
 
 tvn(soupTvn)
 rmf(soupRmf)
