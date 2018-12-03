@@ -20,6 +20,7 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('spotify/', include('spotify.urls')),
+    path('coupons/', include('coupons.urls')),
     path('admin/', admin.site.urls),
     path('pogoda/', include('pogoda.urls')),
     path('info/', include('info.urls')),
