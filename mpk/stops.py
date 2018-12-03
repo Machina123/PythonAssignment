@@ -1,3 +1,5 @@
+MPK_ENDPOINT_DEPARTS = "http://www.ttss.krakow.pl/internetservice/services/passageInfo/stopPassages/stop"
+
 # ID -> stop name bindings
 # credit: https://github.com/jacekkow/mpk-ttss/blob/master/stops/stops.php
 MPK_TRAMSTOPS = {

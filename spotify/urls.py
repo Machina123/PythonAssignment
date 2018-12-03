@@ -11,5 +11,5 @@ urlpatterns = [
     path('next', views.next_track, name="next"),
     path('prev', views.prev_track, name="prev"),
     path('pause', views.pause, name="pause"),
-    path('play', views.play, name="play"),
+    path('play', views.play, name="play")
 ]

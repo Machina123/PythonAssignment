@@ -1,9 +1,6 @@
-from typing import Dict
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 import urllib.parse
-import base64
 import requests
 from requests.auth import HTTPBasicAuth
 import json
@@ -13,6 +10,7 @@ from . import appdata
 
 # Create your views here.
 redirect_url = urllib.parse.quote_plus(appdata.LOCAL_ENDPOINT_REDIRURL)
+
 
 def index(request):
     resp_string = ""
@@ -36,7 +34,6 @@ def authcode(request):
 
 def get_token(request):
     try:
-        spoti_auth = base64.b64encode((appdata.SPOTIFY_CLIENT_ID + ":" + appdata.SPOTIFY_CLIENT_SECRET).encode())
         spoti_auth_token_file = open("spotify_auth.dat", "r")
         spoti_auth_token = spoti_auth_token_file.read()
         spoti_auth_token_file.close()
@@ -87,9 +84,9 @@ def now_playing(request):
             resp = req.json()
             return HttpResponse(json.dumps(resp))
         else:
-            return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+            return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
     else:
-        return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+        return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
 
 
 def int_refresh_token():
@@ -102,7 +99,7 @@ def int_refresh_token():
         spoti_acesstoken.close()
         spoti_lastrefreshf.close()
         if "expires_in" in spoti_tokendata:
-            return_obj["success"] = "true"
+            return_obj["success"] = True
             if (spoti_lastrefresh + int(spoti_tokendata["expires_in"])) < time.time():
                 params = {"grant_type": "refresh_token", "refresh_token": spoti_tokendata["refresh_token"]}
                 req = requests.post(appdata.SPOTIFY_ENDPOINT_TOKEN, data=params,
@@ -120,10 +117,10 @@ def int_refresh_token():
             else:
                 return_obj["message"] = "No need to refresh, token is still valid"
         else:
-            return_obj["success"] = "false"
+            return_obj["success"] = False
             return_obj["message"] = "Client is not authhorized, please go to /spotify/authcode first"
     except FileNotFoundError:
-        return_obj["success"] = "false"
+        return_obj["success"] = False
         return_obj["message"] = "Client is not authhorized, please go to /spotify/authcode first"
     return return_obj
 
@@ -131,62 +128,62 @@ def int_refresh_token():
 def next_track(request):
     refresh = int_refresh_token()
     if "success" in refresh:
-        if refresh["success"] == "true":
+        if refresh["success"] is True:
             headers = {"Authorization": "Bearer " + read_token()}
             req = requests.post(appdata.SPOTIFY_ENDPOINT_NEXT, headers=headers)
             if req.status_code == requests.codes.no_content:
-                return HttpResponse(json.dumps({"success": "true"}))
+                return HttpResponse(json.dumps({"success": True}))
             else:
                 return HttpResponse(json.dumps(req.json()))
         else:
-            return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+            return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
     else:
-        return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+        return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
 
 
 def prev_track(request):
     refresh = int_refresh_token()
     if "success" in refresh:
-        if refresh["success"] == "true":
+        if refresh["success"] is True:
             headers = {"Authorization": "Bearer " + read_token()}
             req = requests.post(appdata.SPOTIFY_ENDPOINT_PREVIOUS, headers=headers)
             if req.status_code == requests.codes.no_content:
-                return HttpResponse(json.dumps({"success": "true"}))
+                return HttpResponse(json.dumps({"success": True}))
             else:
                 return HttpResponse(json.dumps(req.json()))
         else:
-            return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+            return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
     else:
-        return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+        return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
 
 
 def pause(request):
     refresh = int_refresh_token()
     if "success" in refresh:
-        if refresh["success"] == "true":
+        if refresh["success"] is True:
             headers = {"Authorization": "Bearer " + read_token()}
             req = requests.put(appdata.SPOTIFY_ENDPOINT_PAUSE, headers=headers)
             if req.status_code == requests.codes.no_content:
-                return HttpResponse(json.dumps({"success": "true"}))
+                return HttpResponse(json.dumps({"success": True}))
             else:
                 return HttpResponse(json.dumps(req.json()))
         else:
-            return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+            return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
     else:
-        return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+        return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
 
 
 def play(request):
     refresh = int_refresh_token()
     if "success" in refresh:
-        if refresh["success"] == "true":
+        if refresh["success"] is True:
             headers = {"Authorization": "Bearer " + read_token()}
             req = requests.put(appdata.SPOTIFY_ENDPOINT_PLAY, headers=headers)
             if req.status_code == requests.codes.no_content:
-                return HttpResponse(json.dumps({"success": "true"}))
+                return HttpResponse(json.dumps({"success": True}))
             else:
                 return HttpResponse(json.dumps(req.json()))
         else:
-            return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+            return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
     else:
-        return HttpResponse(json.dumps({"success": "false", "error": "User not authorized"}))
+        return HttpResponse(json.dumps({"success": False, "error": "User not authorized"}))
