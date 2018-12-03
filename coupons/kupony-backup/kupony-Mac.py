@@ -37,10 +37,12 @@ def mac():
                     "value": j,
                     "picture": k
                 }
-        print(kuponyMacEl)
-        cenaKuponu.remove(j)
-        fotoKuponu.remove(k)
-        # kuponyMac.append(kuponyMacEl)
+        # print(kuponyMacEl)
+            fotoKuponu.remove(k)
+            cenaKuponu.remove(j)
+            kuponyMac.append(kuponyMacEl)
+
+
 
     for i in kuponyMac:
         print(i)
