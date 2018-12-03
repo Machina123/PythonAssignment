@@ -38,9 +38,9 @@ def mac(request):
                     "picture": k
                 }
         # print(kuponyMacEl)
-        cenaKuponu.remove(j)
-        fotoKuponu.remove(k)
-        kuponyMac.append(kuponyMacEl)
+            fotoKuponu.remove(k)
+            cenaKuponu.remove(j)
+            kuponyMac.append(kuponyMacEl)
 
     return HttpResponse(json.dumps(kuponyMac))
 
