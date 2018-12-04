@@ -29,7 +29,7 @@ def index(request):
 def authcode(request):
     scopes = "user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-private user-read-birthdate user-read-email"
     url = appdata.SPOTIFY_ENDPOINT_AUTH + "?response_type=code&client_id=" + appdata.SPOTIFY_CLIENT_ID + "&scope=" + scopes + "&redirect_uri=" + redirect_url
-    return HttpResponseRedirect(url)
+    return redirect(url)
 
 
 def get_token(request):
@@ -78,7 +78,7 @@ def get_user_data(request):
 def now_playing(request):
     refresh = int_refresh_token()
     if "success" in refresh:
-        if refresh["success"] == "true":
+        if refresh["success"] is True:
             headers = {"Authorization": "Bearer " + read_token()}
             req = requests.get(appdata.SPOTIFY_ENDPOINT_NOW_PLAYING, headers=headers)
             resp = req.json()

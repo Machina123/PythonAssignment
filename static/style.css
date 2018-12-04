@@ -23,6 +23,22 @@ body{
     clear: both;
 }
 
-.spotify{
-    font-size: 2em;
+.spotify {
+    font-size: 1.5em;
+    background-color: green;
+    color: white;
+    padding-top: 16px;
+}
+
+.spotify img {
+    max-width: 100%;
+}
+
+.spotify a {
+    color: white;
+}
+
+.spotify a:hover {
+    text-decoration: underline;
+    color: white;
 }
