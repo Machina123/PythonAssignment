@@ -147,33 +147,40 @@
                 <form class="form-inline col-10 mx-auto" name="mpk">
                     <label for="przystanek">Wybierz przystanek: </label>
                     <select class="form-control col-8 mt-1 ml-3" id="przystanek">
-                        <option>Default select</option>
+
                     </select>
-                    <button type="submit" class="btn btn-primary col-12 col-sm-1 ml-1 ml-md-3 mt-1">
+                    <button class="btn btn-primary col-12 col-sm-1 ml-1 ml-md-3 mt-1" id="btn_mpk_rozklad">
                             <i class="fas fa-arrow-right"></i>
                     </button>
+                    <div id="mpk_rozklad">
+                        
+                    </div>
                 </form>
             </div>
             <div class="col-4 bg-secondary text-success spotify mx-auto">
-                <!--spotify-->
-                <!--nie mam pojęcia jak to podpiąć żeby było pokazane co jest odtwarzane label chyba nie wystarczy-->
-                <div class="col-3 float-left mr-5">
-                    <img src="" alt="okładka">
-                    <p>
-                        informacje o utworze<br>
-                    </p>
-                </div>
-                <div class="col-9 mt-5">
-                    <button type="submit" class="btn btn-primary mt-5 ml-5">
-                            <i class="fas fa-backward"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary mt-5">
-                            <i class="fas fa-play"></i>
-                            <!--<i class="fas fa-pause"></i>-->
-                    </button>
-                    <button type="submit" class="btn btn-primary mt-5">
-                            <i class="fas fa-forward"></i>
-                    </button>
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-3">
+                                    <img src="" alt="okładka" id="spoti_album">
+                                </div>
+                                <div class="col-9">
+                                    <p>
+                                        <i class="fas fa-music"></i>&nbsp;<span id="spoti_title"></span><br>
+                                        <i class="fas fa-microphone"></i>&nbsp;<span id="spoti_artist"></span><br>
+                                        <i class="fas fa-dot-circle"></i> <span id="spoti_album"></span>
+                                    </p>
+                                    <br>
+                                    <button class="btn btn-primary mt-5 ml-5" id="btn_spoti_prev">
+                                            <i class="fas fa-backward"></i>
+                                    </button>
+                                    <button class="btn btn-primary mt-5" id="btn_spoti_play">
+                                            <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="btn btn-primary mt-5" id="btn_spoti_next">
+                                            <i class="fas fa-forward"></i>
+                                    </button>
+                                </div>
+                    </div>
                 </div>
             </div>
         </div>
