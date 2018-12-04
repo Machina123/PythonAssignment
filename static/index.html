@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+    <script src="{% static 'script/kupony.js' %}"></script>
     <script src="{% static 'script/mpk.js' %}"></script>
     <script src="{% static 'script/zegar.js' %}"></script>
 </head>
@@ -69,14 +70,15 @@
             <div class="col-12 col-md-8 col-lg-4 bg-danger text-warning coupons-mc mx-auto">
                 <!--kupony mac-->
                 <a href="https://mcdonalds.pl/oferty">
-                    <div id="carouselExampleIndicators" class="carousel slide col-10 mx-auto" data-ride="carousel">
-                        <ol class="carousel-indicators mx-auto">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <div id="carouselExampleIndicatorsMac" class="carousel slide col-10 mx-auto" data-ride="carousel">
+                        <ol class="carousel-indicators mx-auto" id="olMac">
+                        <!--<li data-target="#carouselExampleIndicatorsMac" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicatorsMac" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicatorsMac" data-slide-to="2"></li>
+                        -->
                         </ol>
-                        <div class="carousel-inner col-12 mx-auto">
-                            <div class="carousel-item active">
+                        <div class="carousel-inner col-12 mx-auto" id="imgMc">
+                            <!--<div class="carousel-item active">
                                 {% load staticfiles %}
                                 <img class="d-block w-75 image mx-auto" src="{% static 'logo-Mc-Donald.jpg' %}" alt="First slide">
                             </div>
@@ -87,7 +89,7 @@
                             <div class="carousel-item">
                                 {% load staticfiles %}
                                 <img class="d-block w-75 image mx-auto" src="{% static 'logo-Mc-Donald.jpg' %}" alt="Third slide">
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </a>
@@ -95,13 +97,13 @@
             <div class="col-12 col-md-8 col-lg-4 bg-success text-warning coupons-subway mx-auto">
                 <!--kupony subway-->
                 <a href="https://www.qpony.pl/subway">
-                    <div id="carouselExampleIndicators" class="carousel slide col-10 mx-auto" data-ride="carousel">
+                    <div id="carouselExampleIndicatorsSubway" class="carousel slide col-10 mx-auto" data-ride="carousel">
                         <ol class="carousel-indicators mx-auto">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicatorsSubway" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicatorsSubway" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicatorsSubway" data-slide-to="2"></li>
                         </ol>
-                        <div class="carousel-inner col-12 mx-auto">
+                        <div class="carousel-inner col-12 mx-auto" >
                             <div class="carousel-item active">
                                 <img class="d-block w-75 image mx-auto" src="img/logo-Mc-Donald.jpg" alt="First slide">
                             </div>
@@ -118,11 +120,11 @@
             <div class="col-12 col-md-8 col-lg-4 bg-light text-danger coupons-dagrasso mx-auto">
                 <!--kupony dagrasso-->
                 <a href="https://www.dagrasso.pl/promocje">
-                    <div id="carouselExampleIndicators" class="carousel slide col-10 mx-auto" data-ride="carousel">
+                    <div id="carouselExampleIndicatorsDagrasso" class="carousel slide col-10 mx-auto" data-ride="carousel">
                         <ol class="carousel-indicators mx-auto">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicatorsDagrasso" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicatorsDagrasso" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicatorsDagrasso" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner col-12 mx-auto">
                             <div class="carousel-item active">
