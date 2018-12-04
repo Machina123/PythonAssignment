@@ -1,0 +1,24 @@
+/*
+    WSZYSTKIE WYSOKOŚI SĄ USTAWIANE DLA PRZYKŁADU. W PIERWSZYM KONTENERZE JAK BĘDDZIE BANER I ZEGAR 
+    PRAWDOPODOBNIE TRZEBA BĘDZIE USUNĄĆ WYSOKOŚCI
+*/
+body{
+    background-color: lightgrey;
+}
+
+.banner{
+    height: 15vh;
+}
+
+.zegar{
+    text-align: right;
+}
+
+.weather{
+    height: 25vh;
+}
+
+.spotify{
+    font-size: 2em;
+}
+
