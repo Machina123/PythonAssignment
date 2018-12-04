@@ -2,7 +2,6 @@ from django.http import HttpResponse
 import json
 import requests
 from . import stops
-# Create your views here.
 
 
 def index(request):
@@ -15,3 +14,7 @@ def get_departures(request):
         return HttpResponse(json.dumps(req.json()))
     else:
         return HttpResponse(json.dumps({"success": False, "error": "No stop specified"}))
+
+
+def get_stops(request):
+    return HttpResponse(json.dumps({v: k for k, v in stops.MPK_TRAMSTOPS.items()}))
