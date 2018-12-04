@@ -18,6 +18,11 @@ body{
     height: 25vh;
 }
 
+.news{
+    min-height: 300px;
+    clear: both;
+}
+
 .spotify{
     font-size: 2em;
 }
