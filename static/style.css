@@ -21,10 +21,6 @@ body{
 .weather{
     height: 25vh;
 }
-.weather #pogoda-bottom{
-    position: absolute;
-    bottom: 10px;
-}
 
 .news{
     min-height: 300px;
@@ -70,4 +66,10 @@ body{
 
 .kuponImg{
 	background-color:rgba(0,0,0,0.25);
+}
+
+#spoti_loggedin {
+    font-size: 12pt;
+    display: inline-block;
+    padding-bottom: 16px;
 }

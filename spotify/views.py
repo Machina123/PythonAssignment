@@ -44,7 +44,7 @@ def get_token(request):
         req = requests.post(appdata.SPOTIFY_ENDPOINT_TOKEN, data=params)
         resp = req.json()
         if "error" in resp:
-            return redirect("/spotify/authcode")
+            return HttpResponse(json.dumps({"success": False, "error": resp["error"]}))
         elif "access_token" in resp:
             spoti_access_token_file = open("spoti_access_token.json", "w")
             spoti_access_token_file.write(json.dumps(resp))
@@ -54,7 +54,7 @@ def get_token(request):
             spoti_last_refresh_file.close()
             return HttpResponse(json.dumps(resp))
     except FileNotFoundError:
-        return redirect("/spotify/authcode")
+        return HttpResponse(json.dumps({"success": False, "error": "User not logged in"}))
 
 
 def refresh_token(request):
