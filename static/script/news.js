@@ -1,3 +1,4 @@
+var x = 0;
 function getTvn() {
     $.ajax({
         url: "http://127.0.0.1:8080/info/tvn",
@@ -8,7 +9,7 @@ function getTvn() {
             document.getElementById("info").innerHTML = " ";
 
             var info = document.getElementById("info");
-            for(var i = 0; i < 15; i++){
+            for(var i = 0; i < 10; i++){
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
@@ -25,6 +26,7 @@ function getTvn() {
                 news.appendChild(link);
                 info.appendChild(news);
             }
+         document.getElementById("news0").style.display = "block";
         
         }
     })
@@ -40,7 +42,7 @@ function getRmf() {
             document.getElementById("info").innerHTML = " ";
 
             var info = document.getElementById("info");
-            for(var i = 0; i < 15; i++){
+            for(var i = 0; i < 10; i++){
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
@@ -57,6 +59,7 @@ function getRmf() {
                 news.appendChild(link);
                 info.appendChild(news);
             }
+        document.getElementById("news0").style.display = "block";
         }
     })
 }
@@ -71,7 +74,7 @@ function getInteria() {
             document.getElementById("info").innerHTML = "";
 
             var info = document.getElementById("info");
-            for(var i = 0; i < 15; i++){
+            for(var i = 0; i < 10; i++){
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
@@ -88,6 +91,37 @@ function getInteria() {
                 news.appendChild(link);
                 info.appendChild(news);
             }
+        document.getElementById("news0").style.display = "block";
         }
     })
 }
+
+function prev(){
+    if(x == 0){
+        document.getElementById("news0").style.display = "none";
+        x = 9;
+        document.getElementById("news"+x).style.display = "block";
+    }
+    else{
+        document.getElementById("news"+x).style.display = "none";
+        x--;
+        document.getElementById("news"+x).style.display = "block";
+        
+    }
+    console.log(x)
+}
+
+function next(){
+    document.getElementById("news0").style.display = "none";
+    if(x == 9){
+        document.getElementById("news9").style.display = "none";
+        x = 0;
+        document.getElementById("news"+x).style.display = "block";
+    }
+    else{
+        document.getElementById("news"+x).style.display = "none";
+        x++;
+        document.getElementById("news"+x).style.display = "block";
+    }
+}
+
