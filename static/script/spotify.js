@@ -1,23 +1,66 @@
-function spotifyInit() {
+const SPOTIFY_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/spotify"
+const SPOTIFY_ENDPOINTS = {
+    token: SPOTIFY_ENDPOINT_BASE + "/token",
+    refreshToken: SPOTIFY_ENDPOINT_BASE + "/refresh_token",
+    user: SPOTIFY_ENDPOINT_BASE + "/user",
+    nowPlaying: SPOTIFY_ENDPOINT_BASE + "/now_playing",
+    pause: SPOTIFY_ENDPOINT_BASE + "/pause",
+    play: SPOTIFY_ENDPOINT_BASE + "/play",
+    next: SPOTIFY_ENDPOINT_BASE + "/next",
+    prev: SPOTIFY_ENDPOINT_BASE + "/prev"
+}
+
+function spotifyRefreshToken() {
     $.ajax({
-        url: "http://localhost:8080/spotify/refresh_token",
+        url: SPOTIFY_ENDPOINTS.refreshToken,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
             if(!data.success) {
                document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
             }
+        }, 
+        error: function(xhr, status, error) {
+            document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
         }
     })
 }
 
 function spotifyGetLoggedIn() {
+    $.ajax({
+        url: SPOTIFY_ENDPOINTS.user,
+        type: "GET",
+        dataType: "json",
+        success: function(data, status, xhr) {
+            if(data.id != null) {
+                document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Zalogowano jako <a href='"+ data.external_urls.spotify +"' target='_blank'>"+ data.display_name +"</a>";
+            }
+        }
+    })
+}
 
+function spotifyGetToken() {
+    try {
+        $.ajax({
+            url: SPOTIFY_ENDPOINTS.token,
+            type: "GET",
+            dataType: "json",
+            success: function(data, status, xhr) {
+                console.log(data);
+            },
+            error: function(xhr, status, error) {
+                console.error(status, error);
+            }
+        })
+    } catch(err) {
+        console.error(err);
+        document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
+    }
 }
 
 function spotifyGetNowPlaying() {
     $.ajax({
-        url: "http://localhost:8080/spotify/now_playing",
+        url: SPOTIFY_ENDPOINTS.nowPlaying,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -53,6 +96,9 @@ function spotifyGetNowPlaying() {
             spotiAlbumElem.innerText = data.item.album.name
 
             spotiAlbumArtElem.src = data.item.album.images[0].url
-        } 
+        },
+        error: function(xhr, status, error) {
+            document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
+        }
     })
 }

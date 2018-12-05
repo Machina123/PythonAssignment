@@ -10,7 +10,7 @@ SPOTIFY_ENDPOINT_TOKEN = "https://accounts.spotify.com/api/token"
 SPOTIFY_ENDPOINT_USER = "https://api.spotify.com/v1/me"
 
 # Playback controls endpoints
-SPOTIFY_ENDPOINT_NOW_PLAYING = "https://api.spotify.com/v1/me/player"
+SPOTIFY_ENDPOINT_NOW_PLAYING = "https://api.spotify.com/v1/me/player/currently-playing"
 SPOTIFY_ENDPOINT_NEXT = "https://api.spotify.com/v1/me/player/next"  # POST
 SPOTIFY_ENDPOINT_PREVIOUS = "https://api.spotify.com/v1/me/player/previous"  # POST
 SPOTIFY_ENDPOINT_PLAY = "https://api.spotify.com/v1/me/player/play"  # PUT
