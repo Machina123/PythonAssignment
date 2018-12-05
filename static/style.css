@@ -8,6 +8,11 @@ body{
 
 .banner{
     height: 15vh;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 2em;
+}
+.banner h2{
+    font-size: 2em;
 }
 
 .zegar{
