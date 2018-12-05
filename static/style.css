@@ -19,11 +19,16 @@ body{
 }
 
 .weather{
-    height: 25vh;
+    height: 190px;
 }
+
+.weather #pogoda-top{
+    width:100%;
+}
+
 .weather #pogoda-bottom{
-    position: absolute;
-    bottom: 10px;
+    clear: both;
+    width:100%;
 }
 
 .news{

@@ -12,20 +12,15 @@ function getWeather() {
         dataType: 'json',
         success: function(data, status, xhr) {
             //console.log(data)  
-            var top = document.getElementById("pogoda-top");
-            var bot = document.getElementById("pogoda-bottom");
+            var right = document.getElementById("pogoda-right");
+            var temp = document.getElementById("weather-temp");
 
             skycons.set("weatherCanvas",data.icon);
 
-            var summary = document.createElement("p");
-            summary.className = "float-right";
-            summary.innerHTML = data.summary;
+            temp.innerHTML = data.temperature +"<sup>&#x2103;</sup";
 
-            bot.innerHTML = "Temperatura: " + data.temperature +"&deg;<br>Odczuwalna Temperatura: "
-            + data.apparentTemperature +"&deg;<br> Ciśnienie powietrza: " + data.pressure + " hPa";
-
-            top.appendChild(icon);
-            top.appendChild(summary);
+            right.innerHTML = "Odczuwalna Temperatura: "
+            + data.apparentTemperature +"&deg;<br> Ciśnienie powietrza: " + data.pressure + " hPa ";
         }
     })
 }
