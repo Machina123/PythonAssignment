@@ -1,7 +1,14 @@
+const NEWS_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/info"
+const NEWS_ENDPOINTS = {
+    tvn: NEWS_ENDPOINT_BASE + "/tvn",
+    rmf: NEWS_ENDPOINT_BASE + "/rmf",
+    interia: NEWS_ENDPOINT_BASE + "/interia"
+}
+
 var x = 0;
 function getTvn() {
     $.ajax({
-        url: "http://localhost:8080/info/tvn",
+        url: NEWS_ENDPOINTS.tvn,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -32,7 +39,7 @@ function getTvn() {
 
 function getRmf() {
     $.ajax({
-        url: "http://localhost:8080/info/rmf",
+        url: NEWS_ENDPOINTS.rmf,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -62,7 +69,7 @@ function getRmf() {
 
 function getInteria() {
     $.ajax({
-        url: "http://localhost:8080/info/interia",
+        url: NEWS_ENDPOINTS.interia,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {

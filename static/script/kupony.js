@@ -1,6 +1,14 @@
+const KUPONY_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/spotify"
+const KUPONY_ENDPOINTS = {
+    mac: KUPONY_ENDPOINT_BASE + "/mac",
+    subway: KUPONY_ENDPOINT_BASE + "/subway",
+    dagrasso: KUPONY_ENDPOINT_BASE + "/dagrasso"
+}
+
+
 function getKuponyMac() {
     $.ajax({
-        url: "http://localhost:8080/coupons/mac",
+        url: KUPONY_ENDPOINTS.mac,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -36,7 +44,7 @@ function getKuponyMac() {
 
 function getKuponySubway() {
     $.ajax({
-        url: "http://localhost:8080/coupons/subway",
+        url: KUPONY_ENDPOINTS.subway,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -72,7 +80,7 @@ function getKuponySubway() {
 
 function getKuponyDagrasso() {
     $.ajax({
-        url: "http://localhost:8080/coupons/dagrasso",
+        url: KUPONY_ENDPOINTS.dagrasso,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {

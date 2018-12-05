@@ -1,6 +1,11 @@
+const POGODA_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/pogoda"
+const POGODA_ENDPOINTS = {
+    pogoda: POGODA_ENDPOINT_BASE + "/pogoda"
+}
+
 function getWeather() {
     $.ajax({
-        url: "http://127.0.0.1:8080/pogoda/pogoda",
+        url: POGODA_ENDPOINTS.pogoda,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
