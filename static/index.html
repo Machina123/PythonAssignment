@@ -22,6 +22,7 @@
     <script src="{% static 'script/mpk.js' %}"></script>
     <script src="{% static 'script/zegar.js' %}"></script>
     <script src="{% static 'script/spotify.js' %}"></script>
+    <script src="{% static 'script/init.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -63,25 +64,25 @@
 
                         </div>
                         <div class="col-2">
-                            <button type='button' class='btn btn-info float-right'>Odśwież</button>
+                            <button type='button' class='btn btn-info float-right' id="weather_refresh">Odśwież</button>
                         </div>
                     </div>
                 </div>                
             </div>
             <div class="col-8 bg-secondary text-light text-center news">
                 <div class="row">
-                    <div class="col-4" onClick="getTvn()">
-                        <h2>TVN24</h2>
+                    <div class="col-4">
+                        <button class="btn btn-info" id="btn_news_tvn">TVN24</button>
                     </div>
-                    <div class="col-4" onClick="getRmf()">
-                        <h2>RMF</h2>
+                    <div class="col-4">
+                        <button class="btn btn-info" id="btn_news_rmf">RMF24.pl</button>
                     </div>
-                    <div class="col-4" onClick="getInteria()">
-                        <h2>Interia</h2>
+                    <div class="col-4">
+                        <button class="btn btn-info" id="btn_news_interia">Interia.pl</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-info float-left" onClick="prevNews()">Poprzednia</button>
-                <button type="button" class="btn btn-info float-right" onClick="nextNews()">Następna</button>
+                <button type="button" class="btn btn-info float-left" id="news_prev">Poprzednia</button>
+                <button type="button" class="btn btn-info float-right" id="news_next">Następna</button>
                 <div id="info">
                     
                 </div>
