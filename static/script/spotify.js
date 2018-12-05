@@ -13,6 +13,7 @@ const SPOTIFY_ENDPOINTS = {
 var SPOTIFY_REFRESHER_ID;
 
 var isSpotifyPlaying = false;
+var isUserPremium = false;
 
 function spotifyRefreshToken() {
     $.ajax({
@@ -39,6 +40,12 @@ function spotifyGetLoggedIn() {
         success: function(data, status, xhr) {
             if(data.id != null) {
                 document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Zalogowano jako <a href='"+ data.external_urls.spotify +"' target='_blank'>"+ data.display_name +"</a>";
+                if(data.product != "premium") {
+                    document.getElementById("btn_spoti_prev").disabled = true
+                    document.getElementById("btn_spoti_play").disabled = true
+                    document.getElementById("btn_spoti_next").disabled = true
+                    document.getElementById("spoti_loggedin").innerHTML += "&nbsp;<em>(Użytkownik darmowy)</em>";
+                }
             }
         }
     })

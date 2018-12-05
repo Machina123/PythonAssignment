@@ -1,6 +1,12 @@
+const MPK_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/mpk"
+const MPK_ENDPOINTS = {
+    stops: MPK_ENDPOINT_BASE + "/stops",
+    departures: MPK_ENDPOINT_BASE + "/departures"
+}
+
 function getMpkStops() {
     $.ajax({
-        url: "http://localhost:8080/mpk/stops",
+        url: MPK_ENDPOINTS.stops,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -19,7 +25,7 @@ function getMpkStops() {
 function getMpkSchedule() {
     var stopId = $("#przystanek").val()
     $.ajax({
-        url: "http://localhost:8080/mpk/departures?stop=" + stopId,
+        url: MPK_ENDPOINTS.departures + "?stop=" + stopId,
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
