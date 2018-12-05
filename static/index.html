@@ -53,11 +53,20 @@
         <div class="row">
             <div class="col-4 bg-dark text-light weather">
                 <div id="pogoda-top">
-                    <canvas id="weatherCanvas" width="128" height="128"></canvas>
+                    <canvas id="weatherCanvas" width="128" height="128" class="float-left"></canvas>
+                    <p id="weather-city" class="float-left" style="font-size: 18pt; margin-left: 10px;">Kraków</p><br>
+                    <p id="weather-temp" class="float-right" style="font-size: 28pt; font-weight: bold;"></p>
                 </div>
                 <div id="pogoda-bottom">
-                    <button type="button" class="btn btn-info float-right">Odświerz</button>
-                </div>
+                    <div class="row">
+                        <div class="col-10" id="pogoda-right">
+
+                        </div>
+                        <div class="col-2">
+                            <button type='button' class='btn btn-info float-right'>Odśwież</button>
+                        </div>
+                    </div>
+                </div>                
             </div>
             <div class="col-8 bg-secondary text-light text-center news">
                 <div class="row">
@@ -139,38 +148,36 @@
                     </div>
                 </form>
             </div>
-            <div class="col-4 spotify mx-auto">
-                <span id="spoti_loggedin"><i class="fab fa-spotify"></i>&nbsp;Nie zalogowano do Spotify</span>
-                <div class="container-fluid">
-                    <div class="row">
+            <div class="col-4 spotify pb-3">
+                    <span id="spoti_loggedin"><i class="fab fa-spotify"></i>&nbsp;Ładowanie modułu Spotify...</span>
+                    <div class="container-fluid">
+                        <div class="row">
                             <div class="col-3">
-                                    <img src="https://via.placeholder.com/640" alt="okładka" id="spoti_album">
-                                </div>
-                                <div class="col-9">
-                                    <p>
-                                        <i class="fas fa-music fa-fw"></i>&nbsp;<span id="spoti_title"></span><br>
-                                        <i class="fas fa-microphone fa-fw"></i>&nbsp;<span id="spoti_artist"></span><br>
-                                        <i class="fas fa-dot-circle fa-fw"></i>&nbsp;<span id="spoti_albumname"></span><br>
-                                    </p>
-                                    <br>
-                                    <button class="btn btn-primary mt-5 ml-5" id="btn_spoti_prev">
-                                            <i class="fas fa-backward"></i>
-                                    </button>
-                                    <button class="btn btn-primary mt-5" id="btn_spoti_play">
-                                            <i class="fas fa-play"></i>
-                                    </button>
-                                    <button class="btn btn-primary mt-5" id="btn_spoti_next">
-                                            <i class="fas fa-forward"></i>
-                                    </button>
-                                </div>
+                                <img src="https://via.placeholder.com/640" alt="okładka" id="spoti_album">
+                            </div>
+                            <div class="col-9">
+                                <p>
+                                    <i class="fas fa-music fa-fw"></i>&nbsp;<span id="spoti_title"></span><br>
+                                    <i class="fas fa-microphone fa-fw"></i>&nbsp;<span id="spoti_artist"></span><br>
+                                    <i class="fas fa-dot-circle fa-fw"></i>&nbsp;<span id="spoti_albumname"></span><br>
+                                </p>
+                                <button class="btn btn-primary" id="btn_spoti_prev">
+                                    <i class="fas fa-backward"></i>
+                                </button>
+                                <button class="btn btn-primary" id="btn_spoti_play">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="btn btn-primary" id="btn_spoti_next">
+                                    <i class="fas fa-forward"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer class="container-fluid bg-dark text-light text-center">
+        </section>
+        <footer class="container-fluid bg-dark text-light text-center">
             Copyright (C) By Mateusz Bugaj, Patryk Ciepiela, Bartłomiej Gil 2018
-    </footer>
-
+        </footer>
 </body>
 </html>
