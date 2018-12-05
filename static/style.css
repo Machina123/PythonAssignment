@@ -23,8 +23,12 @@ body{
 }
 
 .news{
-    height: 300px;
+    min-height: 300px;
     clear: both;
+}
+
+.news a{
+    color: lightblue;
 }
 
 .news #info > *{
