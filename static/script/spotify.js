@@ -46,7 +46,9 @@ function spotifyGetToken() {
             type: "GET",
             dataType: "json",
             success: function(data, status, xhr) {
-                console.log(data);
+                if(data.hasOwnProperty("error")) {
+                    document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
+                }
             },
             error: function(xhr, status, error) {
                 console.error(status, error);
