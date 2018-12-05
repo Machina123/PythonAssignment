@@ -42,3 +42,7 @@ body{
     text-decoration: underline;
     color: white;
 }
+
+.kuponImg{
+	background-color:rgba(0,0,0,0.25);
+}
