@@ -27,7 +27,6 @@ def index(request):
         params = {"client_id": appdata.SPOTIFY_CLIENT_ID, "client_secret": appdata.SPOTIFY_CLIENT_SECRET,
                   "grant_type": "authorization_code", "code": spoti_auth_token,
                   "redirect_uri": appdata.LOCAL_ENDPOINT_REDIRURL}
-
         req = requests.post(appdata.SPOTIFY_ENDPOINT_TOKEN, data=params)
         resp = req.json()
         if "error" in resp:
