@@ -19,8 +19,17 @@ body{
 }
 
 .news{
-    min-height: 300px;
+    height: 300px;
     clear: both;
+}
+
+.news .col-4{
+    display: block;
+    cursor: pointer;
+}
+
+.news #info img{
+    width:100px !important;
 }
 
 .spotify {

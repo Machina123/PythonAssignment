@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
-	<script src="{% static 'script/szukaj.js' %}"></script>
+    <script src="{% static 'script/szukaj.js' %}"></script>
+    <script src="{% static 'script/news.js' %}"></script>
+    <script src="{% static 'script/pogoda.js' %}"></script>
 	<script src="{% static 'script/kupony.js' %}"></script>
     <script src="{% static 'script/mpk.js' %}"></script>
     <script src="{% static 'script/zegar.js' %}"></script>
     <script src="{% static 'script/spotify.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <header class="container-fluid bg-dark text-light banner">
@@ -51,19 +53,21 @@
                 <!--pogoda-->
             </div>
             <div class="col-8 bg-secondary text-light text-center news">
-                <!--wiadomości-->
-                <h2>RMF</h2>
-                <p>
+                <div class="row">
+                    <div class="col-4" onClick="getTvn()">
+                        <h2>TVN24</h2>
+                    </div>
+                    <div class="col-4" onClick="getRmf()">
+                        <h2>RMF</h2>
+                    </div>
+                    <div class="col-4" onClick="getInteria()">
+                        <h2>Interia</h2>
+                    </div>
+                </div>
+                <div id="info">
 
-                </p>
-                <h2>TVN24</h2>
-                <p>
-
-                </p>
-                <h2>Interia.pl</h2>
-                <p>
-
-                </p>
+                </div>
+    
             </div>
         </div>
     </section>
