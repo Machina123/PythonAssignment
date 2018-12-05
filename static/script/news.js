@@ -97,7 +97,7 @@ function getInteria() {
     })
 }
 
-function prev(){
+function prevNews(){
     if(x == 0){
         document.getElementById("news0").style.display = "none";
         x = 9;
@@ -112,7 +112,7 @@ function prev(){
     console.log(x)
 }
 
-function next(){
+function nextNews(){
     document.getElementById("news0").style.display = "none";
     if(x == 9){
         document.getElementById("news9").style.display = "none";

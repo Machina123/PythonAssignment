@@ -13,7 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	
+    
+    <script src="{% static 'script/skycons.js' %}"></script>
     <script src="{% static 'script/szukaj.js' %}"></script>
     <script src="{% static 'script/news.js' %}"></script>
     <script src="{% static 'script/pogoda.js' %}"></script>
@@ -40,7 +41,7 @@
         <div class="row">
             <form class="form-inline col-10 mx-auto" name="search">
                 <div class="form-group col-12 mx-auto">
-                    <input type="text" id="inputSzukaj" class="form-control col-12 col-sm-10 " placeholder="Podaj szukaną frazę...">
+                    <input type="text" id="inputSzukaj" class="form-control col-12 col-sm-10 " placeholder="Szukaj w google...">
                     <button id="szukaj" class="btn btn-primary col-12 col-sm-1 ml-1 ml-md-3">
                         <i class="fas fa-search"></i>
                     </button>
@@ -52,10 +53,10 @@
         <div class="row">
             <div class="col-4 bg-dark text-light weather">
                 <div id="pogoda-top">
-                    
+                    <canvas id="weatherCanvas" width="128" height="128"></canvas>
                 </div>
                 <div id="pogoda-bottom">
-
+                    <button type="button" class="btn btn-info float-right">Odświerz</button>
                 </div>
             </div>
             <div class="col-8 bg-secondary text-light text-center news">
@@ -70,8 +71,8 @@
                         <h2>Interia</h2>
                     </div>
                 </div>
-                <button type="button" class="btn btn-info float-left" onClick="prev()">Poprzednia</button>
-                <button type="button" class="btn btn-info float-right" onClick="next()">Następna</button>
+                <button type="button" class="btn btn-info float-left" onClick="prevNews()">Poprzednia</button>
+                <button type="button" class="btn btn-info float-right" onClick="nextNews()">Następna</button>
                 <div id="info">
                     
                 </div>
@@ -139,7 +140,7 @@
                 </form>
             </div>
             <div class="col-4 spotify mx-auto">
-                <span id="spoti_loggedin"></span>
+                <span id="spoti_loggedin"><i class="fab fa-spotify"></i>&nbsp;Nie zalogowano do Spotify</span>
                 <div class="container-fluid">
                     <div class="row">
                             <div class="col-3">

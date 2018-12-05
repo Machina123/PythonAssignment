@@ -3,6 +3,8 @@ const POGODA_ENDPOINTS = {
     pogoda: POGODA_ENDPOINT_BASE + "/pogoda"
 }
 
+var skycons = new Skycons({"color": "white"});
+
 function getWeather() {
     $.ajax({
         url: POGODA_ENDPOINTS.pogoda,
@@ -13,9 +15,7 @@ function getWeather() {
             var top = document.getElementById("pogoda-top");
             var bot = document.getElementById("pogoda-bottom");
 
-            var icon = document.createElement("div")
-            icon.className = "float-left";
-            icon.innerHTML = data.icon;
+            skycons.set("weatherCanvas",data.icon);
 
             var summary = document.createElement("p");
             summary.className = "float-right";
@@ -28,4 +28,9 @@ function getWeather() {
             top.appendChild(summary);
         }
     })
+}
+
+function initWeather() {
+    skycons.add("weatherCanvas", Skycons.PARTLY_CLOUDY_DAY);
+    skycons.play();
 }
