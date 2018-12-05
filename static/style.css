@@ -21,6 +21,10 @@ body{
 .weather{
     height: 25vh;
 }
+.weather #pogoda-bottom{
+    position: absolute;
+    bottom: 10px;
+}
 
 .news{
     min-height: 300px;

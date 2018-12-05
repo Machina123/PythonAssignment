@@ -1,7 +1,7 @@
 var x = 0;
 function getTvn() {
     $.ajax({
-        url: "http://127.0.0.1:8080/info/tvn",
+        url: "http://localhost:8080/info/tvn",
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -13,10 +13,8 @@ function getTvn() {
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
-                title.id = "title" + i;
                 title.innerHTML = data[i].title;
                 var desc = document.createElement("p");
-                desc.id = "desc" + i;
                 desc.innerHTML = data[i].desc;
                 var link = document.createElement("a");
                 link.setAttribute("href",data[i].link);
@@ -34,7 +32,7 @@ function getTvn() {
 
 function getRmf() {
     $.ajax({
-        url: "http://127.0.0.1:8080/info/rmf",
+        url: "http://localhost:8080/info/rmf",
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -46,10 +44,8 @@ function getRmf() {
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
-                title.id = "title" + i;
                 title.innerHTML = data[i].title;
                 var desc = document.createElement("p");
-                desc.id = "desc" + i;
                 desc.innerHTML = data[i].desc;
                 var link = document.createElement("a");
                 link.setAttribute("href",data[i].link);
@@ -66,7 +62,7 @@ function getRmf() {
 
 function getInteria() {
     $.ajax({
-        url: "http://127.0.0.1:8080/info/interia",
+        url: "http://localhost:8080/info/interia",
         type: 'GET',
         dataType: 'json',
         success: function(data, status, xhr) {
@@ -78,10 +74,8 @@ function getInteria() {
                 var news = document.createElement("div");
                 news.id = "news" + i;
                 var title = document.createElement("h3");
-                title.id = "title" + i;
                 title.innerHTML = data[i].title;
                 var desc = document.createElement("p");
-                desc.id = "desc" + i;
                 desc.innerHTML = data[i].desc;
                 var link = document.createElement("a");
                 link.setAttribute("href",data[i].link);
