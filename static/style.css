@@ -82,3 +82,11 @@ body{
     display: inline-block;
     padding-bottom: 16px;
 }
+
+#spoti_title, #spoti_albumname, #spoti_artist {
+    display: inline-block;
+    width: 20vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

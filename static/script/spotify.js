@@ -10,6 +10,10 @@ const SPOTIFY_ENDPOINTS = {
     prev: SPOTIFY_ENDPOINT_BASE + "/prev"
 }
 
+var SPOTIFY_REFRESHER_ID;
+
+var isSpotifyPlaying = false;
+
 function spotifyRefreshToken() {
     $.ajax({
         url: SPOTIFY_ENDPOINTS.refreshToken,
@@ -27,6 +31,7 @@ function spotifyRefreshToken() {
 }
 
 function spotifyGetLoggedIn() {
+    spotifyRefreshToken()
     $.ajax({
         url: SPOTIFY_ENDPOINTS.user,
         type: "GET",
@@ -39,28 +44,8 @@ function spotifyGetLoggedIn() {
     })
 }
 
-function spotifyGetToken() {
-    try {
-        $.ajax({
-            url: SPOTIFY_ENDPOINTS.token,
-            type: "GET",
-            dataType: "json",
-            success: function(data, status, xhr) {
-                if(data.hasOwnProperty("error")) {
-                    document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(status, error);
-            }
-        })
-    } catch(err) {
-        console.error(err);
-        document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
-    }
-}
-
 function spotifyGetNowPlaying() {
+    spotifyRefreshToken()
     $.ajax({
         url: SPOTIFY_ENDPOINTS.nowPlaying,
         type: 'GET',
@@ -71,14 +56,15 @@ function spotifyGetNowPlaying() {
                 return;
             }  
             
-            console.log(data)
+            // console.log(data)
 
-            var spotiTitleElem = document.getElementById("spoti_title")
-            var spotiArtistElem = document.getElementById("spoti_artist")
-            var spotiAlbumElem = document.getElementById("spoti_albumname")
-            var spotiAlbumArtElem = document.getElementById("spoti_album")
+            var spotiTitleElem = document.getElementById("spoti_title");
+            var spotiArtistElem = document.getElementById("spoti_artist");
+            var spotiAlbumElem = document.getElementById("spoti_albumname");
+            var spotiAlbumArtElem = document.getElementById("spoti_album");
+            var spotiPlaybackTimeElem = document.getElementById("spoti_time");
 
-            if(data.isPlaying) {
+            if(data.is_playing) {
                 document.getElementById("btn_spoti_play").innerHTML = "<i class='fas fa-pause'></i>";
             } else {
                 document.getElementById("btn_spoti_play").innerHTML = "<i class='fas fa-play'></i>";
@@ -98,9 +84,83 @@ function spotifyGetNowPlaying() {
             spotiAlbumElem.innerText = data.item.album.name
 
             spotiAlbumArtElem.src = data.item.album.images[0].url
+
+            isSpotifyPlaying = data.is_playing;
+
+            spotiPlaybackTimeElem.innerText = formatTime(data.progress_ms) + " / " + formatTime(data.item.duration_ms)
         },
         error: function(xhr, status, error) {
             document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
         }
     })
+}
+
+function spotifyInit() {
+    try {
+        $.ajax({
+            url: SPOTIFY_ENDPOINTS.refreshToken,
+            type: "GET",
+            dataType: "json",
+            success: spotifyDetermineLoginStatus,
+            error: function(xhr, status, error) {
+                console.error(status, error);
+            }
+        })
+    } catch(err) {
+        console.error(err);
+        document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
+    }
+} 
+
+function spotifyDetermineLoginStatus(data, status, xhr) {
+    if(data.hasOwnProperty("error")) {
+        document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
+    } else {
+        spotifyGetLoggedIn()
+        SPOTIFY_REFRESHER_ID = setInterval(spotifyGetNowPlaying, 1000);
+    }
+}
+
+function spotifyPlayPause() {
+    $.ajax({
+        url: (isSpotifyPlaying ? SPOTIFY_ENDPOINTS.pause : SPOTIFY_ENDPOINTS.play),
+        type: 'GET',
+        dataType: 'json',
+        success: function(data, status, xhr) {
+            console.log("playback state changed")
+        }
+    })
+}
+
+function spotifyNextTrack() {
+    $.ajax({
+        url: SPOTIFY_ENDPOINTS.next,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data, status, xhr) {
+            console.log("playback state changed")
+        }
+    })
+}
+
+function spotifyPrevTrack() {
+    $.ajax({
+        url: SPOTIFY_ENDPOINTS.prev,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data, status, xhr) {
+            console.log("playback state changed")
+        }
+    })
+}
+
+function formatTime(timeUnformattedMs) {
+    var newTime = "";
+    var oldTime = parseInt(timeUnformattedMs);
+    oldTime /= 1000;
+    var newTimeMinutes = parseInt(oldTime / 60);
+    var newTimeSeconds = parseInt(oldTime % 60);
+    newTime += (newTimeMinutes < 10 ? "0" + newTimeMinutes : newTimeMinutes)
+    newTime += ":" + (newTimeSeconds < 10 ? "0" + newTimeSeconds : newTimeSeconds)
+    return newTime;
 }
