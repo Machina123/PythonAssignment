@@ -1,4 +1,4 @@
-const KUPONY_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/spotify"
+const KUPONY_ENDPOINT_BASE = window.location.protocol + "//" + window.location.host + "/coupons"
 const KUPONY_ENDPOINTS = {
     mac: KUPONY_ENDPOINT_BASE + "/mac",
     subway: KUPONY_ENDPOINT_BASE + "/subway",
