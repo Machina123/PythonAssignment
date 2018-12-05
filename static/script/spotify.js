@@ -52,7 +52,7 @@ function spotifyGetNowPlaying() {
         dataType: 'json',
         success: function(data, status, xhr) {
             if(data.hasOwnProperty("success") && !data.success) {
-                alert("Nie zalogowano do Spotify");
+                console.error("Nie zalogowano do Spotify");
                 return;
             }  
             
@@ -113,7 +113,7 @@ function spotifyInit() {
 } 
 
 function spotifyDetermineLoginStatus(data, status, xhr) {
-    if(data.hasOwnProperty("error")) {
+    if(data.hasOwnProperty("success") && data.success == false) {
         document.getElementById("spoti_loggedin").innerHTML = "<i class='fab fa-spotify'></i> Nie zalogowano do Spotify. <a href='./spotify/authcode'>Zaloguj się</a>";
     } else {
         spotifyGetLoggedIn()
