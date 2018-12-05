@@ -109,7 +109,7 @@ function prevNews(){
         document.getElementById("news"+x).style.display = "block";
         
     }
-    console.log(x)
+    // console.log(x)
 }
 
 function nextNews(){
