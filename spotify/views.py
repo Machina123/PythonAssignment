@@ -21,6 +21,25 @@ def index(request):
         auth_data.write(request.GET["code"])
         auth_data.close()
         is_success = "success"
+        spoti_auth_token_file = open("spotify_auth.dat", "r")
+        spoti_auth_token = spoti_auth_token_file.read()
+        spoti_auth_token_file.close()
+        params = {"client_id": appdata.SPOTIFY_CLIENT_ID, "client_secret": appdata.SPOTIFY_CLIENT_SECRET,
+                  "grant_type": "authorization_code", "code": spoti_auth_token,
+                  "redirect_uri": appdata.LOCAL_ENDPOINT_REDIRURL}
+
+        req = requests.post(appdata.SPOTIFY_ENDPOINT_TOKEN, data=params)
+        resp = req.json()
+        if "error" in resp:
+            is_success = "error"
+            return redirect("/?spotify=" + is_success)
+        elif "access_token" in resp:
+            spoti_access_token_file = open("spoti_access_token.json", "w")
+            spoti_access_token_file.write(json.dumps(resp))
+            spoti_access_token_file.close()
+            spoti_last_refresh_file = open("spoti_last_token_refresh.dat", "w")
+            spoti_last_refresh_file.write(str(int(time.time())))
+            spoti_last_refresh_file.close()
     elif "error" in request.GET:
         resp_string += "Error during authorization: " + request.GET["error"]
     return redirect("/?spotify=" + is_success)
