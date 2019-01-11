@@ -204,3 +204,4 @@ modules.xml
 spotify_auth.dat
 spoti_access_token.json
 spoti_last_token_refresh.dat
+.DS_Store
